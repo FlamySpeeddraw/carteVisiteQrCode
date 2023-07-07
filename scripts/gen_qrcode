@@ -1,0 +1,20 @@
+import qrcode
+import base64
+from PIL import Image
+
+image = Image.open("cartes de visite/modele_carte.png")
+
+# Créer un objet QRCode avec le mode d'extension de données
+qr = qrcode.QRCode()
+
+# Ajouter les données de l'image à l'objet QRCode
+qr.add_data(image.tobytes())
+
+# Générer le QR code
+qr.make(fit=True)
+
+# Créer une image à partir du QR code généré
+qr_image = qr.make_image(fill_color="black", back_color="white")
+
+# Enregistrer l'image du QR code
+qr_image.save("qr code/modele.png")
